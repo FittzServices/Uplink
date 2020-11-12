@@ -7,19 +7,19 @@ class HomeCarousel extends StatelessWidget {
     return Carousel(
       boxFit: BoxFit.cover,
       images: [
-        NetworkImage(
+        ExactAssetImage(
           'assets/images/carousel1.jpeg',
         ),
-        NetworkImage(
+        ExactAssetImage(
           'assets/images/carousel2.jpeg',
         ),
-        NetworkImage(
+        ExactAssetImage(
           'assets/images/carousel3.jpeg',
         ),
-        NetworkImage(
+        ExactAssetImage(
           'assets/images/class2.JPG',
         ),
-        NetworkImage(
+        ExactAssetImage(
           'assets/images/class.JPG',
         ),
       ],

@@ -286,7 +286,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
     return ResponsiveWidget(
       largeScreen: ParallaxImage(
         height: ResponsiveWidget.isLargeScreen(context) ? 900 : 1500,
-        image: NetworkImage('assets/images/business2.jpeg'),
+        image: ExactAssetImage('assets/images/business2.jpeg'),
         child: Container(
           child: Column(
             children: <Widget>[

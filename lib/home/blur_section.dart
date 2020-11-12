@@ -27,7 +27,7 @@ class _BlurImageState extends State<BlurImage> {
           decoration: new BoxDecoration(
             color: const Color(0xff7c94b6),
             image: new DecorationImage(
-              image: new NetworkImage('assets/images/business1.jpeg'),
+              image: new ExactAssetImage('assets/images/business1.jpeg'),
               colorFilter: new ColorFilter.mode(
                   Colors.black.withOpacity(0.8), BlendMode.dstATop),
               fit: BoxFit.cover,
