@@ -123,7 +123,7 @@ class _PartnerPageState extends State<PartnerPage>
                           child: Padding(
                             padding: ResponsiveWidget.isLargeScreen(context)
                                 ? const EdgeInsets.all(20.0)
-                                : const EdgeInsets.all(10.0),
+                                : const EdgeInsets.all(20.0),
                             child: Column(
                               children: [
                                 ResponsiveWidget.isLargeScreen(context)
@@ -364,12 +364,12 @@ class _PartnerPageState extends State<PartnerPage>
                                                 color: animationColor.value,
                                                 child: Container(
                                                   height: 150,
-                                                  width: 200,
+                                                  width: MediaQuery.of(context).size.height/3.5,
                                                   color: Colors.white,
                                                   child: Stack(children: [
                                                     Container(
                                                       height: 100,
-                                                      width: 200,
+                                                      width: MediaQuery.of(context).size.height/3.5,
                                                       // padding: EdgeInsets.all(16),
                                                       decoration:
                                                           new BoxDecoration(
@@ -406,7 +406,7 @@ class _PartnerPageState extends State<PartnerPage>
                                                       bottom: 0,
                                                       child: Container(
                                                         color: Colors.blue[900],
-                                                        width: 200,
+                                                        width: MediaQuery.of(context).size.height/3.5,
                                                         height: 50,
                                                         padding:
                                                             EdgeInsets.all(5),
@@ -434,12 +434,12 @@ class _PartnerPageState extends State<PartnerPage>
                                                 color: animationColor.value,
                                                 child: Container(
                                                   height: 150,
-                                                  width: 200,
+                                                  width: MediaQuery.of(context).size.height/3.5,
                                                   color: Colors.white,
                                                   child: Stack(children: [
                                                     Container(
                                                       height: 100,
-                                                      width: 200,
+                                                      width: MediaQuery.of(context).size.height/3.5,
                                                       // padding: EdgeInsets.all(16),
                                                       decoration:
                                                           new BoxDecoration(
@@ -476,7 +476,7 @@ class _PartnerPageState extends State<PartnerPage>
                                                       bottom: 0,
                                                       child: Container(
                                                         color: Colors.blue[900],
-                                                        width: 200,
+                                                        width: MediaQuery.of(context).size.height/3.5,
                                                         height: 50,
                                                         padding:
                                                             EdgeInsets.all(5),
@@ -506,12 +506,12 @@ class _PartnerPageState extends State<PartnerPage>
                                             color: animationColor.value,
                                             child: Container(
                                               height: 150,
-                                              width: 200,
+                                              width: MediaQuery.of(context).size.height/3.5,
                                               color: Colors.white,
                                               child: Stack(children: [
                                                 Container(
                                                   height: 100,
-                                                  width: 200,
+                                                  width: MediaQuery.of(context).size.height/3.5,
                                                   // padding: EdgeInsets.all(16),
                                                   decoration: new BoxDecoration(
                                                     image: new DecorationImage(
@@ -544,7 +544,7 @@ class _PartnerPageState extends State<PartnerPage>
                                                   bottom: 0,
                                                   child: Container(
                                                     color: Colors.blue[900],
-                                                    width: 200,
+                                                    width: MediaQuery.of(context).size.height/3.5,
                                                     height: 50,
                                                     padding: EdgeInsets.all(5),
                                                     child: Column(

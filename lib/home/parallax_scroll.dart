@@ -633,7 +633,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                     Container(
                                       height:
                                           MediaQuery.of(context).size.height /
-                                              3.5,
+                                              4.5,
                                       width:
                                           MediaQuery.of(context).size.height /
                                               2,
@@ -677,61 +677,148 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(height: 5),
                                     Container(
                                       height:
                                           MediaQuery.of(context).size.height /
-                                              3.5,
+                                              3,
                                       width:
                                           MediaQuery.of(context).size.height /
                                               2,
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            '|Training Services',
-                                            style: TextStyle(
-                                                fontSize: 10,
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(height: 5),
-                                          Text(
-                                            'Individual Training',
-                                            textAlign: TextAlign.start,
-                                            style: TextStyle(
-                                                color: Colors.white70),
-                                          ),
-                                          SizedBox(height: 5),
-                                          Text(
-                                            'Corporate Training',
-                                            textAlign: TextAlign.start,
-                                            style: TextStyle(
-                                                color: Colors.white70),
-                                          ),
-                                          SizedBox(height: 5),
-                                          Text(
-                                            'Online Training',
-                                            textAlign: TextAlign.start,
-                                            style: TextStyle(
-                                                color: Colors.white70),
-                                          ),
-                                          SizedBox(height: 5),
-                                          Text(
-                                            'Exams',
-                                            textAlign: TextAlign.start,
-                                            style: TextStyle(
-                                                color: Colors.white70),
-                                          ),
-                                        ],
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 30, right: 30),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  '|Contact info',
+                                                  style: TextStyle(
+                                                    fontSize: 10,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                    letterSpacing: 1.2,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(height: 20),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'Head Office Location:',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    letterSpacing: 1.2,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(height: 10),
+                                            Container(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Icon(
+                                                        Icons.location_pin,
+                                                        color: Colors.red,
+                                                      ),
+                                                      SizedBox(width: 2),
+                                                      Text(
+                                                        '12, Western Reservoir Road,\nOpp. Peculiar Grace Supermarket,\nOlorunsogo, Geri Alimi Area, \nIlorin. Kwara State. Nigeria',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                          color: Colors.white70,
+                                                          letterSpacing: 1.2,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(height: 10),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.phone_iphone,
+                                                      color: Colors.red,
+                                                    ),
+                                                    SizedBox(width: 2),
+                                                    Text(
+                                                      'Mobile:+234 9077669153',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                        color: Colors.white70,
+                                                        letterSpacing: 1.2,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(height: 10),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.email,
+                                                      color: Colors.red,
+                                                    ),
+                                                    SizedBox(width: 2),
+                                                    Text(
+                                                      'Email:info@uplinx.com.ng',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                        color: Colors.white70,
+                                                        letterSpacing: 1.2,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
                       ),
                       Container(
                         height: 40,
-                        color: Colors.grey[700],
+                        color: Colors.black,
                         width: MediaQuery.of(context).size.width,
                         child: Center(
                           child: Text(
