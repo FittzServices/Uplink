@@ -14,6 +14,7 @@ class PartnerPage extends StatefulWidget {
 class _PartnerPageState extends State<PartnerPage>
     with SingleTickerProviderStateMixin {
   double offset = 0;
+  double _offset=95;
   ScrollController _controller;
 
   @override
@@ -150,7 +151,6 @@ class _PartnerPageState extends State<PartnerPage>
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Card(
-                                          
                                             child: Container(
                                               height: 350,
                                               width: 350,
@@ -229,7 +229,6 @@ class _PartnerPageState extends State<PartnerPage>
                                             ),
                                           ),
                                           Card(
-                                           
                                             child: Container(
                                               height: 350,
                                               width: 350,
@@ -299,7 +298,6 @@ class _PartnerPageState extends State<PartnerPage>
                                             ),
                                           ),
                                           Card(
-                                            
                                             child: Container(
                                               height: 350,
                                               width: 350,
@@ -379,7 +377,6 @@ class _PartnerPageState extends State<PartnerPage>
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Card(
-                                                
                                                 child: Container(
                                                   height: 150,
                                                   width: MediaQuery.of(context)
@@ -460,7 +457,6 @@ class _PartnerPageState extends State<PartnerPage>
                                                 ),
                                               ),
                                               Card(
-                                                
                                                 child: Container(
                                                   height: 150,
                                                   width: MediaQuery.of(context)
@@ -543,7 +539,6 @@ class _PartnerPageState extends State<PartnerPage>
                                             ],
                                           ),
                                           Card(
-                                            
                                             child: Container(
                                               height: 150,
                                               width: MediaQuery.of(context)
@@ -950,18 +945,61 @@ class _PartnerPageState extends State<PartnerPage>
                     ],
                   ),
                 ),
-               ResponsiveWidget.isLargeScreen(context)? FlutterWebScroller(
-                  //Pass a reference to the ScrollCallBack function into the scrollbar
-                  scrollCallBack,
+                ResponsiveWidget.isLargeScreen(context)
+                    ? 
+                    // Container(
+                    //     alignment: Alignment.centerRight,
+                    //     height: MediaQuery.of(context).size.height,
+                    //     width: 20.0,
+                    //     margin: EdgeInsets.only(
+                    //         left: MediaQuery.of(context).size.width - 20.0),
+                    //     decoration: BoxDecoration(color: Colors.black12),
+                    //     child: Container(
+                    //       alignment: Alignment.topCenter,
+                    //       child: GestureDetector(
+                    //         child: Container(
+                    //           height: 40.0,
+                    //           width: 15.0,
+                    //           margin: EdgeInsets.only(
+                    //               left: 5.0, right: 5.0, top: _offset),
+                    //           decoration: BoxDecoration(
+                    //             color: Colors.red,
+                    //             borderRadius: BorderRadius.all(
+                    //               Radius.circular(3.0),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //         onVerticalDragUpdate: (dragUpdate) {
+                    //           _controller.position
+                    //               .moveTo(dragUpdate.globalPosition.dy * 3.5);
 
-                  //Add optional values
-                  scrollBarBackgroundColor: Colors.blue[900],
-                  scrollBarWidth: 20.0,
-                  dragHandleColor: Colors.red,
-                  dragHandleBorderRadius: 2.0,
-                  dragHandleHeight: 40.0,
-                  dragHandleWidth: 15.0,
-                ):Text(''),
+                    //           setState(() {
+                    //             if (dragUpdate.globalPosition.dy >= 95) {
+                    //               _offset = dragUpdate.globalPosition.dy;
+                    //             }
+                    //             print(
+                    //                 "View offset ${_controller.offset} scroll-bar offset $_offset");
+                    //           });
+                    //         },
+                    //       ),
+                    //     ),
+                    //   )
+                     Padding(
+                       padding: const EdgeInsets.only(top:80.0),
+                       child: FlutterWebScroller(
+                          //Pass a reference to the ScrollCallBack function into the scrollbar
+                          scrollCallBack,
+
+                          //Add optional values
+                          scrollBarBackgroundColor: Colors.black12.withOpacity(0.5),
+                          scrollBarWidth: 20.0,
+                          dragHandleColor: Colors.red,
+                          dragHandleBorderRadius: 2.0,
+                          dragHandleHeight: 40.0,
+                          dragHandleWidth: 15.0,
+                        ),
+                     )
+                    : Text(''),
               ],
             ),
           ),

@@ -37,6 +37,7 @@ dependencies:
   mailer: ^3.2.1
   url_launcher: ^5.7.10
   flutter_web_scrollbar: ^0.0.3
+  draggable_scrollbar: ^0.0.4
 
 dev_dependencies:
   flutter_test:

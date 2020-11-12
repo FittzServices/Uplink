@@ -49,13 +49,13 @@ class _HomeState extends State<Home> {
   String subject = '';
   String request = '';
   String error = '';
-  double offset = 0;
+  double _offset = 0;
   bool loading = false;
   ScrollController _scrollController;
   bool switchPage = false;
   bool updateOffsetAccordingToScroll(ScrollNotification scrollNotification) {
     setState(() {
-      offset = scrollNotification.metrics.pixels;
+      _offset = scrollNotification.metrics.pixels;
     });
     return true;
   }
@@ -569,7 +569,8 @@ class _HomeState extends State<Home> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
-                                  height: ResponsiveWidget.isLargeScreen(context)
+                                  height: ResponsiveWidget.isLargeScreen(
+                                          context)
                                       ? MediaQuery.of(context).size.height / 2
                                       : MediaQuery.of(context).size.width * 1.6,
                                   width: MediaQuery.of(context).size.width,
@@ -603,27 +604,31 @@ class _HomeState extends State<Home> {
                               child: BusinessSchool(),
                             ),
                             ParallaxPage(),
-                            
                           ],
                         ),
                       ),
                     ),
                   ),
-               ResponsiveWidget.isLargeScreen(context)?   FlutterWebScroller(
-                    //Pass a reference to the ScrollCallBack function into the scrollbar
-                    scrollCallBack,
+                  ResponsiveWidget.isLargeScreen(context)
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 80.0),
+                          child: FlutterWebScroller(
+                            //Pass a reference to the ScrollCallBack function into the scrollbar
+                            scrollCallBack,
 
-                    //Add optional values
-                    scrollBarBackgroundColor: Colors.white,
-                    scrollBarWidth: 20.0,
-                    dragHandleColor: Colors.red,
-                    dragHandleBorderRadius: 2.0,
-                    dragHandleHeight: 40.0,
-                    dragHandleWidth: 15.0,
-                  ):Text(''),
+                            //Add optional values
+                            scrollBarBackgroundColor:
+                                Colors.black12.withOpacity(0.5),
+                            scrollBarWidth: 20.0,
+                            dragHandleColor: Colors.red,
+                            dragHandleBorderRadius: 2.0,
+                            dragHandleHeight: 40.0,
+                            dragHandleWidth: 15.0,
+                          ),
+                        )
+                      : Text(''),
                 ],
               )
-
             : PartnerPage(),
       ),
     );
