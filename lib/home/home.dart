@@ -409,11 +409,14 @@ class _HomeState extends State<Home> {
           ),
         ),
         // appBar:
+        drawerEnableOpenDragGesture: false,
+        endDrawerEnableOpenDragGesture: false,
         endDrawer:
             // data: Theme.of(context).copyWith(
             //   canvasColor: Colors.transparent,
             // ),
             Drawer(
+            
           child: Column(
             children: [
               Expanded(
