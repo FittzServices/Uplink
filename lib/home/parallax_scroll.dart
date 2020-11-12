@@ -624,12 +624,13 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                             style: TextStyle(
                                               color: Colors.white70,
                                               letterSpacing: 1.2,
+                                              fontSize: 12,
                                             ),
                                           ),
                                         ],
                                       ),
                                     ),
-                                    SizedBox(height: 5),
+                                    SizedBox(height: 20),
                                     Container(
                                       height:
                                           MediaQuery.of(context).size.height /
@@ -651,6 +652,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                             'Individual Training',
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
+                                              fontSize: 12,
                                                 color: Colors.white70),
                                           ),
                                           SizedBox(height: 5),
@@ -658,6 +660,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                             'Corporate Training',
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
+                                              fontSize: 12,
                                                 color: Colors.white70),
                                           ),
                                           SizedBox(height: 5),
@@ -665,6 +668,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                             'Online Training',
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
+                                              fontSize: 12,
                                                 color: Colors.white70),
                                           ),
                                           SizedBox(height: 5),
@@ -672,6 +676,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                             'Exams',
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
+                                              fontSize: 12,
                                                 color: Colors.white70),
                                           ),
                                         ],
@@ -719,6 +724,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                                   'Head Office Location:',
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
+                                                    fontSize: 12,
                                                     color: Colors.white,
                                                     letterSpacing: 1.2,
                                                   ),
@@ -745,6 +751,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                                         textAlign:
                                                             TextAlign.center,
                                                         style: TextStyle(
+                                                          fontSize: 12,
                                                           color: Colors.white70,
                                                           letterSpacing: 1.2,
                                                         ),
@@ -773,6 +780,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
+                                                        fontSize: 12,
                                                         color: Colors.white70,
                                                         letterSpacing: 1.2,
                                                       ),
@@ -800,6 +808,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
+                                                        fontSize: 12,
                                                         color: Colors.white70,
                                                         letterSpacing: 1.2,
                                                       ),
