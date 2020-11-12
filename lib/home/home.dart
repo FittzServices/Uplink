@@ -5,10 +5,12 @@ import 'package:uplink_tech_hub/home/card_home.dart';
 import 'package:uplink_tech_hub/home/course_section.dart';
 import 'package:uplink_tech_hub/home/home_carousel.dart';
 import 'package:uplink_tech_hub/home/parallax_scroll.dart';
+import 'package:uplink_tech_hub/home/partner_page.dart';
 import 'package:uplink_tech_hub/home/responsive_widget.dart';
 import 'package:uplink_tech_hub/home/school.dart';
 import 'package:uplink_tech_hub/shared/constant.dart';
 import 'package:uplink_tech_hub/shared/loading.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   final ImageProvider image;
@@ -27,19 +29,33 @@ class _HomeState extends State<Home> {
   ];
   final _formkey = GlobalKey<FormState>();
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  String email = '';
+  String subject = '';
   String request = '';
   String error = '';
   double offset = 0;
   bool loading = false;
   ScrollController _scrollController;
-  
-
+  bool switchPage = false;
   bool updateOffsetAccordingToScroll(ScrollNotification scrollNotification) {
     setState(() {
       offset = scrollNotification.metrics.pixels;
     });
     return true;
+  }
+
+  void _switchController(onPush) {
+    setState(() {
+      switchPage = onPush;
+    });
+  }
+
+  _launchURL(String toMailId, String subject, String body) async {
+    var url = 'mailto:$toMailId?subject=$subject&body=$body';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   void _onPressDialog() {
@@ -50,7 +66,7 @@ class _HomeState extends State<Home> {
             ? Loading()
             : Dialog(
                 child: Container(
-                  height: MediaQuery.of(context).size.height / 1.8,
+                  height: MediaQuery.of(context).size.height / 1.7,
                   width: MediaQuery.of(context).size.width / 2.8,
                   child: Padding(
                     padding:
@@ -93,14 +109,14 @@ class _HomeState extends State<Home> {
                               children: [
                                 TextFormField(
                                   decoration: textInputDecoration.copyWith(
-                                    hintText: 'Email',
-                                    prefixIcon: Icon(Icons.email),
+                                    hintText: 'Subject',
+                                    // prefixIcon: Icon(Icons.subject),
                                   ),
                                   validator: (val) => val.isEmpty
-                                      ? 'Enter an email address'
+                                      ? 'Subject cannot be empty'
                                       : null,
                                   onChanged: (val) {
-                                    setState(() => email = val);
+                                    setState(() => subject = val);
                                   },
                                 ),
                                 SizedBox(height: 10.0),
@@ -131,27 +147,9 @@ class _HomeState extends State<Home> {
                                   child: RaisedButton(
                                     onPressed: () async {
                                       if (_formkey.currentState.validate()) {
-                                        //HelperFunctions.saveUserNameSharedPreference(firstName);
-
-                                        print(email);
-                                        print(request);
                                         Navigator.pop(context);
-
-                                        // setState(() {
-                                        //   loading = true;
-                                        // });
-
-                                        // dynamic result = null;
-
-                                        // if (result == null) {
-                                        //   setState(() {
-                                        //     error =
-                                        //         'Email or Password is not correct, Please try again';
-                                        //     loading = false;
-                                        //   });
-                                        // } else {
-                                        //   Navigator.pop(context);
-                                        // }
+                                        _launchURL('info@uplinx.com.ng',
+                                            subject, request);
                                       }
                                     },
                                     color: Colors.red[400],
@@ -192,314 +190,397 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.white,
         extendBodyBehindAppBar: true,
         appBar: PreferredSize(
-          preferredSize: Size(screenSize.width, 1000),
-          child: Container(
-            color: Colors.blue[900],
-            child: Padding(
-              padding: const EdgeInsets.only(left: 50, right: 50),
-              child: Row(
-                children: [
-                  Text(
-                    'Call Us: +2348033454976',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [],
-                    ),
-                  ),
-                  IconButton(
-                    icon: FaIcon(
-                      FontAwesomeIcons.facebook,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {},
-                    iconSize: 15,
-                  ),
-                  SizedBox(
-                    width: screenSize.width / 150,
-                  ),
-                  IconButton(
-                    icon: FaIcon(
-                      FontAwesomeIcons.linkedinIn,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {},
-                    iconSize: 15,
-                  ),
-                  SizedBox(
-                    width: screenSize.width / 150,
-                  ),
-                  IconButton(
-                    icon: FaIcon(
-                      FontAwesomeIcons.skype,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {},
-                    iconSize: 15,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        endDrawer: Drawer(
-          child: ListView(
-            children: [Text('Drawer')],
-          ),
-        ),
-        body: SingleChildScrollView(
-        
-          child: ResponsiveWidget(
-            largeScreen: Column(
-              children: <Widget>[
-                PreferredSize(
-                  preferredSize: Size.fromHeight(100.0),
-                  child: AppBar(
-                    backgroundColor: Colors.white,
-                    // color: Colors.white,
-
-                    title: Padding(
-                       padding: ResponsiveWidget.isLargeScreen(context)? const EdgeInsets.only(
-                        left: 50,
-                        top: 30,
-                        bottom: 30,
-                      ):
-                      const EdgeInsets.only(
-                        left: 10,
-                        top: 30,
-                        bottom: 30,
-                      ),
-                      child: ResponsiveWidget(
-                        largeScreen: Row(
-                          mainAxisAlignment:
-                              ResponsiveWidget.isSmallScreen(context)
-                                  ? MainAxisAlignment.spaceBetween
-                                  : MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(6.0),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height: 50,
-                                    width: 50,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: AssetImage(
-                                            'assets/images/uplink2.png'),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    'Uplink Digital Institute',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.black,
-                                        fontSize: 15),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    actions: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 60.0),
-                        child: ResponsiveWidget.isSmallScreen(context)
-                            ? Icon(
-                                Icons.menu,
-                                color: Colors.blue[900],
-                              )
-                            : Row(
-                                children: [
-                                  InkWell(
-                                    onHover: (value) {
-                                      setState(() {
-                                        _isHovering[0] = value;
-                                      });
-                                    },
-                                    onTap: () {},
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text(
-                                          'Home',
-                                          style: TextStyle(
-                                              color: _isHovering[0]
-                                                  ? Colors.deepOrange
-                                                  : Colors.blue[900],
-                                              fontSize: 15),
-                                        ),
-                                        SizedBox(height: 5),
-                                        // For showing an underline on hover
-                                        Visibility(
-                                          maintainAnimation: true,
-                                          maintainState: true,
-                                          maintainSize: true,
-                                          visible: _isHovering[0],
-                                          child: Container(
-                                            height: 2,
-                                            width: 20,
-                                            color: Colors.deepOrange,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: screenSize.width / 50,
-                                  ),
-                                  InkWell(
-                                    onHover: (value) {
-                                      setState(() {
-                                        _isHovering[1] = value;
-                                      });
-                                    },
-                                    onTap: () {},
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text(
-                                          'About Us',
-                                          style: TextStyle(
-                                              color: _isHovering[1]
-                                                  ? Colors.deepOrange
-                                                  : Colors.blue[900],
-                                              fontSize: 15),
-                                        ),
-                                        SizedBox(height: 5),
-                                        // For showing an underline on hover
-                                        Visibility(
-                                          maintainAnimation: true,
-                                          maintainState: true,
-                                          maintainSize: true,
-                                          visible: _isHovering[1],
-                                          child: Container(
-                                            height: 2,
-                                            width: 20,
-                                            color: Colors.deepOrange,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height / 1.5,
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.red,
-                  child: HomeCarousel(),
-                ),
-                Container(
-                  height: 100,
+          preferredSize: Size.fromHeight(100.0),
+          child: Column(
+            children: [
+              PreferredSize(
+                preferredSize: Size(screenSize.width, 1000),
+                child: Container(
                   color: Colors.blue[900],
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: Container(
-                          height: 20,
-                          width: 30,
-                          child: CustomPaint(
-                              size: Size(200, 200), painter: DrawTriangle()),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 50, right: 50),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Call Us: +2348033454976',
+                          style: TextStyle(color: Colors.white),
                         ),
-                      ),
-                      Center(
-                        child: Row(
-                          // mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                          children: [
-                            Text(
-                              'Got any questions?',
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w200,
-                                fontSize: 30,
-                              ),
-                            ),
-                            RaisedButton(
-                              onPressed: () {
-                                _onPressDialog();
-                              },
-                              textColor: Colors.white,
-                              padding: const EdgeInsets.all(0.0),
-                              child: Container(
-                                width: 135,
-                                decoration: const BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: <Color>[
-                                      Color(0xFFB71C1C),
-                                      Color(0xFFEF5350),
-                                      Color(0xFFFFCDD2),
-                                    ],
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [],
+                          ),
+                        ),
+                        IconButton(
+                          icon: FaIcon(
+                            FontAwesomeIcons.facebook,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {},
+                          iconSize: 15,
+                        ),
+                        SizedBox(
+                          width: screenSize.width / 150,
+                        ),
+                        IconButton(
+                          icon: FaIcon(
+                            FontAwesomeIcons.linkedinIn,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {},
+                          iconSize: 15,
+                        ),
+                        SizedBox(
+                          width: screenSize.width / 150,
+                        ),
+                        IconButton(
+                          icon: FaIcon(
+                            FontAwesomeIcons.skype,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {},
+                          iconSize: 15,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              AppBar(
+                backgroundColor: Colors.white,
+                // color: Colors.white,
+                iconTheme: new IconThemeData(color: Colors.black),
+                title: Padding(
+                  padding: ResponsiveWidget.isLargeScreen(context)
+                      ? const EdgeInsets.only(
+                          left: 50,
+                          top: 30,
+                          bottom: 30,
+                        )
+                      : const EdgeInsets.only(
+                          left: 10,
+                          top: 30,
+                          bottom: 30,
+                        ),
+                  child: ResponsiveWidget(
+                    largeScreen: Row(
+                      mainAxisAlignment: ResponsiveWidget.isSmallScreen(context)
+                          ? MainAxisAlignment.spaceBetween
+                          : MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image:
+                                        AssetImage('assets/images/uplink2.png'),
                                   ),
                                 ),
-                                padding: const EdgeInsets.all(10.0),
-                                child: const Text('Contact Us',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 20)),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                'Uplink Digital Institute',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
+                                    fontSize: 15),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                actions: ResponsiveWidget.isSmallScreen(context)
+                    ? null
+                    : [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 60.0),
+                          child: Row(
+                            children: [
+                              InkWell(
+                                onHover: (value) {
+                                  setState(() {
+                                    _isHovering[0] = value;
+                                  });
+                                },
+                                onTap: () {
+                                  _switchController(false);
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      'Home',
+                                      style: TextStyle(
+                                          color: _isHovering[0]
+                                              ? Colors.deepOrange
+                                              : Colors.blue[900],
+                                          fontSize: 15),
+                                    ),
+                                    SizedBox(height: 5),
+                                    // For showing an underline on hover
+                                    Visibility(
+                                      maintainAnimation: true,
+                                      maintainState: true,
+                                      maintainSize: true,
+                                      visible: _isHovering[0],
+                                      child: Container(
+                                        height: 2,
+                                        width: 20,
+                                        color: Colors.deepOrange,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: screenSize.width / 50,
+                              ),
+                              InkWell(
+                                onHover: (value) {
+                                  setState(() {
+                                    _isHovering[1] = value;
+                                  });
+                                },
+                                onTap: () {
+                                  _switchController(true);
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      'Partners',
+                                      style: TextStyle(
+                                          color: _isHovering[1]
+                                              ? Colors.deepOrange
+                                              : Colors.blue[900],
+                                          fontSize: 15),
+                                    ),
+                                    SizedBox(height: 5),
+                                    // For showing an underline on hover
+                                    Visibility(
+                                      maintainAnimation: true,
+                                      maintainState: true,
+                                      maintainSize: true,
+                                      visible: _isHovering[1],
+                                      child: Container(
+                                        height: 2,
+                                        width: 20,
+                                        color: Colors.deepOrange,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+              ),
+            ],
+          ),
+        ),
+        // appBar:
+        endDrawer:
+            // data: Theme.of(context).copyWith(
+            //   canvasColor: Colors.transparent,
+            // ),
+            Drawer(
+          child: Column(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.85,
+                  child: DrawerHeader(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/images/computer.jpeg'),
+                          fit: BoxFit.cover),
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Uplink Digital Institute',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                              fontSize: 25),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: ListView(
+                      children: [
+                        ListTile(
+                          leading: Icon(Icons.home, color: Colors.blue),
+                          title: Text(
+                            'Home',
+                            style: TextStyle(
+                                color: _isHovering[1]
+                                    ? Colors.deepOrange
+                                    : Colors.blue[900],
+                                fontSize: 15),
+                          ),
+                          onTap: () {
+                            _switchController(false);
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.handyman, color: Colors.blue),
+                          title: Text(
+                            'Partners',
+                            style: TextStyle(
+                                color: _isHovering[1]
+                                    ? Colors.deepOrange
+                                    : Colors.blue[900],
+                                fontSize: 15),
+                          ),
+                          onTap: () {
+                            _switchController(true);
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    ),
+                  ))
+            ],
+          ),
+        ),
+
+        // endDrawer: Drawer(
+        //   child: ListView(
+        //     children: [Text('Drawer')],
+        //   ),
+        // ),
+        body: !switchPage
+            ? SingleChildScrollView(
+                child: ResponsiveWidget(
+                  largeScreen: Column(
+                    children: <Widget>[
+                      Container(
+                        height: MediaQuery.of(context).size.height / 1.5,
+                        width: MediaQuery.of(context).size.width,
+                        color: Colors.red,
+                        child: HomeCarousel(),
+                      ),
+                      Container(
+                        height: 100,
+                        color: Colors.blue[900],
+                        child: Column(
+                          children: [
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Container(
+                                height: 20,
+                                width: 30,
+                                child: CustomPaint(
+                                    size: Size(200, 200),
+                                    painter: DrawTriangle()),
+                              ),
+                            ),
+                            Center(
+                              child: Row(
+                                // mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+
+                                children: [
+                                  Text(
+                                    'Got any questions?',
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w200,
+                                      fontSize: 30,
+                                    ),
+                                  ),
+                                  RaisedButton(
+                                    onPressed: () {
+                                      _onPressDialog();
+                                    },
+                                    textColor: Colors.white,
+                                    padding: const EdgeInsets.all(0.0),
+                                    child: Container(
+                                      width: 135,
+                                      decoration: const BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: <Color>[
+                                            Color(0xFFB71C1C),
+                                            Color(0xFFEF5350),
+                                            Color(0xFFFFCDD2),
+                                          ],
+                                        ),
+                                      ),
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: const Text('Contact Us',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 20)),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
                       ),
+                      CardHome(),
+                      Container(
+                        height: ResponsiveWidget.isLargeScreen(context)
+                            ? MediaQuery.of(context).size.height / 2
+                            : MediaQuery.of(context).size.width * 1.6,
+                        width: MediaQuery.of(context).size.width,
+                        color: Colors.blue[900],
+                        child: CourseSection(),
+                      ),
+                      Container(
+                        height: ResponsiveWidget.isLargeScreen(context)
+                            ? MediaQuery.of(context).size.height / 2.5
+                            : MediaQuery.of(context).size.width * 1.4,
+                        width: MediaQuery.of(context).size.width,
+                        color: Colors.white,
+                        child: CoporateTraining(),
+                      ),
+                      Container(
+                        height: ResponsiveWidget.isLargeScreen(context)
+                            ? MediaQuery.of(context).size.height / 2.7
+                            : MediaQuery.of(context).size.width * 1.3,
+                        width: MediaQuery.of(context).size.width,
+                        color: Colors.blue[900],
+                        child: OnlineTraining(),
+                      ),
+                      Container(
+                        height: ResponsiveWidget.isLargeScreen(context)
+                            ? MediaQuery.of(context).size.height / 2.5
+                            : MediaQuery.of(context).size.height * 1.2,
+                        width: MediaQuery.of(context).size.width,
+                        color: Colors.white,
+                        child: BusinessSchool(),
+                      ),
+                      ParallaxPage(),
                     ],
                   ),
                 ),
-                CardHome(),
-                Container(
-                  height: ResponsiveWidget.isLargeScreen(context)
-                      ? MediaQuery.of(context).size.height / 2
-                      : MediaQuery.of(context).size.width * 1.6,
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.blue[900],
-                  child: CourseSection(),
-                ),
-                Container(
-                  height: ResponsiveWidget.isLargeScreen(context)
-                      ? MediaQuery.of(context).size.height / 2.5
-                      : MediaQuery.of(context).size.width * 1.4,
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.white,
-                  child: CoporateTraining(),
-                ),
-                Container(
-                  height: ResponsiveWidget.isLargeScreen(context)
-                      ? MediaQuery.of(context).size.height / 2.7
-                      : MediaQuery.of(context).size.width * 1.3,
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.blue[900],
-                  child: OnlineTraining(),
-                ),
-                Container(
-                  height: ResponsiveWidget.isLargeScreen(context)
-                      ? MediaQuery.of(context).size.height / 2.5
-                      : MediaQuery.of(context).size.height*1.2,
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.white,
-                  child: BusinessSchool(),
-                ),
-                ParallaxPage(),
-              ],
-            ),
-          ),
-        ),
+              )
+            : PartnerPage(),
       ),
     );
   }
