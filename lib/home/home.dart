@@ -288,7 +288,7 @@ class _HomeState extends State<Home> {
                                 width: 5,
                               ),
                               Text(
-                                'Uplink Digital Institute somehow',
+                                'Uplink Digital Institute',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     color: Colors.black,

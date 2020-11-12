@@ -54,14 +54,27 @@ class _PartnerPageState extends State<PartnerPage>
                   // The hero image will be pushed up once user scrolls up
                   // That is why it is multiplied negatively.
                   top: -.25 * offset,
-                  child: FadeInImage.memoryNetwork(
-                    // From the transparent_image package
-                    placeholder: kTransparentImage,
-                    image: 'assets/images/business3.jpeg',
+                  child: Container(
                     height: height / 1.5,
                     width: width,
-                    fit: BoxFit.fitWidth,
+                    decoration: new BoxDecoration(
+                      // color: const Color(0xff7c94b6),
+                      image: new DecorationImage(
+                          image: new ExactAssetImage(
+                              'assets/images/business3.jpeg'),
+                          // colorFilter: new ColorFilter.mode(
+                          //     Colors.black.withOpacity(0.8), BlendMode.dstATop),
+                          fit: BoxFit.fitWidth),
+                    ),
                   ),
+                  // FadeInImage.memoryNetwork(
+                  //   // From the transparent_image package
+                  //   placeholder: kTransparentImage,
+                  //   image: ('assets/images/business3.jpeg'),
+                  //   height: height / 1.5,
+                  //   width: width,
+                  //   fit: BoxFit.fitWidth,
+                  // ),
                 ),
                 Positioned(
                   top: ResponsiveWidget.isLargeScreen(context)
