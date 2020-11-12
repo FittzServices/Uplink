@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_web_scrollbar/flutter_web_scrollbar.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:uplink_tech_hub/home/mouse_action.dart';
 import 'package:uplink_tech_hub/home/responsive_widget.dart';
@@ -13,21 +14,37 @@ class PartnerPage extends StatefulWidget {
 class _PartnerPageState extends State<PartnerPage>
     with SingleTickerProviderStateMixin {
   double offset = 0;
+  ScrollController _controller;
+
+  @override
+  void initState() {
+    //Initialize the  scrollController
+    _controller = ScrollController();
+    super.initState();
+  }
+
+  void scrollCallBack(DragUpdateDetails dragUpdate) {
+    setState(() {
+      // Note: 3.5 represents the theoretical height of all my scrollable content. This number will vary for you.
+      _controller.position.moveTo(dragUpdate.globalPosition.dy * 3.5);
+    });
+  }
+
   AnimationController animationController;
   Animation<Color> animationColor;
   // final cardData = Data.cards[0];
-  @override
-  void initState() {
-    animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 250));
-    animationColor = Tween(begin: Colors.white, end: Colors.blue[900])
-        .animate(animationController)
-          ..addListener(() {
-            setState(() {});
-          });
+  // @override
+  // void initState() {
+  //   animationController =
+  //       AnimationController(vsync: this, duration: Duration(milliseconds: 250));
+  //   animationColor = Tween(begin: Colors.white, end: Colors.blue[900])
+  //       .animate(animationController)
+  //         ..addListener(() {
+  //           setState(() {});
+  //         });
 
-    super.initState();
-  }
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +130,7 @@ class _PartnerPageState extends State<PartnerPage>
                   ),
                 ),
                 SingleChildScrollView(
+                  controller: _controller,
                   child: Column(
                     children: <Widget>[
                       SizedBox(height: height / 1.5),
@@ -132,7 +150,7 @@ class _PartnerPageState extends State<PartnerPage>
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Card(
-                                            color: animationColor.value,
+                                          
                                             child: Container(
                                               height: 350,
                                               width: 350,
@@ -211,7 +229,7 @@ class _PartnerPageState extends State<PartnerPage>
                                             ),
                                           ),
                                           Card(
-                                            color: animationColor.value,
+                                           
                                             child: Container(
                                               height: 350,
                                               width: 350,
@@ -281,7 +299,7 @@ class _PartnerPageState extends State<PartnerPage>
                                             ),
                                           ),
                                           Card(
-                                            color: animationColor.value,
+                                            
                                             child: Container(
                                               height: 350,
                                               width: 350,
@@ -361,15 +379,22 @@ class _PartnerPageState extends State<PartnerPage>
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Card(
-                                                color: animationColor.value,
+                                                
                                                 child: Container(
                                                   height: 150,
-                                                  width: MediaQuery.of(context).size.height/3.5,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      3.5,
                                                   color: Colors.white,
                                                   child: Stack(children: [
                                                     Container(
                                                       height: 100,
-                                                      width: MediaQuery.of(context).size.height/3.5,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height /
+                                                              3.5,
                                                       // padding: EdgeInsets.all(16),
                                                       decoration:
                                                           new BoxDecoration(
@@ -406,7 +431,11 @@ class _PartnerPageState extends State<PartnerPage>
                                                       bottom: 0,
                                                       child: Container(
                                                         color: Colors.blue[900],
-                                                        width: MediaQuery.of(context).size.height/3.5,
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height /
+                                                            3.5,
                                                         height: 50,
                                                         padding:
                                                             EdgeInsets.all(5),
@@ -431,15 +460,22 @@ class _PartnerPageState extends State<PartnerPage>
                                                 ),
                                               ),
                                               Card(
-                                                color: animationColor.value,
+                                                
                                                 child: Container(
                                                   height: 150,
-                                                  width: MediaQuery.of(context).size.height/3.5,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      3.5,
                                                   color: Colors.white,
                                                   child: Stack(children: [
                                                     Container(
                                                       height: 100,
-                                                      width: MediaQuery.of(context).size.height/3.5,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height /
+                                                              3.5,
                                                       // padding: EdgeInsets.all(16),
                                                       decoration:
                                                           new BoxDecoration(
@@ -476,7 +512,11 @@ class _PartnerPageState extends State<PartnerPage>
                                                       bottom: 0,
                                                       child: Container(
                                                         color: Colors.blue[900],
-                                                        width: MediaQuery.of(context).size.height/3.5,
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height /
+                                                            3.5,
                                                         height: 50,
                                                         padding:
                                                             EdgeInsets.all(5),
@@ -503,15 +543,21 @@ class _PartnerPageState extends State<PartnerPage>
                                             ],
                                           ),
                                           Card(
-                                            color: animationColor.value,
+                                            
                                             child: Container(
                                               height: 150,
-                                              width: MediaQuery.of(context).size.height/3.5,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  3.5,
                                               color: Colors.white,
                                               child: Stack(children: [
                                                 Container(
                                                   height: 100,
-                                                  width: MediaQuery.of(context).size.height/3.5,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      3.5,
                                                   // padding: EdgeInsets.all(16),
                                                   decoration: new BoxDecoration(
                                                     image: new DecorationImage(
@@ -544,7 +590,11 @@ class _PartnerPageState extends State<PartnerPage>
                                                   bottom: 0,
                                                   child: Container(
                                                     color: Colors.blue[900],
-                                                    width: MediaQuery.of(context).size.height/3.5,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height /
+                                                            3.5,
                                                     height: 50,
                                                     padding: EdgeInsets.all(5),
                                                     child: Column(
@@ -899,7 +949,19 @@ class _PartnerPageState extends State<PartnerPage>
                           ),
                     ],
                   ),
-                )
+                ),
+               ResponsiveWidget.isLargeScreen(context)? FlutterWebScroller(
+                  //Pass a reference to the ScrollCallBack function into the scrollbar
+                  scrollCallBack,
+
+                  //Add optional values
+                  scrollBarBackgroundColor: Colors.blue[900],
+                  scrollBarWidth: 20.0,
+                  dragHandleColor: Colors.red,
+                  dragHandleBorderRadius: 2.0,
+                  dragHandleHeight: 40.0,
+                  dragHandleWidth: 15.0,
+                ):Text(''),
               ],
             ),
           ),

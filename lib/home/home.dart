@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_scrollbar/flutter_web_scrollbar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:uplink_tech_hub/home/card_home.dart';
@@ -23,6 +24,22 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  ScrollController _controller;
+
+  @override
+  void initState() {
+    //Initialize the  scrollController
+    _controller = ScrollController();
+    super.initState();
+  }
+
+  void scrollCallBack(DragUpdateDetails dragUpdate) {
+    setState(() {
+      // Note: 3.5 represents the theoretical height of all my scrollable content. This number will vary for you.
+      _controller.position.moveTo(dragUpdate.globalPosition.dy * 3.5);
+    });
+  }
+
   List _isHovering = [
     false,
     false,
@@ -472,114 +489,141 @@ class _HomeState extends State<Home> {
         //   ),
         // ),
         body: !switchPage
-            ? SingleChildScrollView(
-                child: ResponsiveWidget(
-                  largeScreen: Column(
-                    children: <Widget>[
-                      Container(
-                        height: MediaQuery.of(context).size.height / 1.5,
-                        width: MediaQuery.of(context).size.width,
-                        color: Colors.red,
-                        child: HomeCarousel(),
-                      ),
-                      Container(
-                        height: 100,
-                        color: Colors.blue[900],
-                        child: Column(
+            ? Stack(
+                children: [
+                  Container(
+                    child: SingleChildScrollView(
+                      //Assign the controller to my scrollable widget
+                      controller: _controller,
+                      child: ResponsiveWidget(
+                        largeScreen: Column(
                           children: [
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: Container(
-                                height: 20,
-                                width: 30,
-                                child: CustomPaint(
-                                    size: Size(200, 200),
-                                    painter: DrawTriangle()),
-                              ),
+                            Container(
+                              height: MediaQuery.of(context).size.height / 1.5,
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.blue.withOpacity(0.5),
+                              child: HomeCarousel(),
                             ),
-                            Center(
-                              child: Row(
-                                // mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-
+                            Container(
+                              height: 100,
+                              color: Colors.blue[900],
+                              child: Column(
                                 children: [
-                                  Text(
-                                    'Got any questions?',
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w200,
-                                      fontSize: 30,
+                                  Align(
+                                    alignment: Alignment.topCenter,
+                                    child: Container(
+                                      height: 20,
+                                      width: 30,
+                                      child: CustomPaint(
+                                          size: Size(200, 200),
+                                          painter: DrawTriangle()),
                                     ),
                                   ),
-                                  RaisedButton(
-                                    onPressed: () {
-                                      _onPressDialog();
-                                    },
-                                    textColor: Colors.white,
-                                    padding: const EdgeInsets.all(0.0),
-                                    child: Container(
-                                      width: 135,
-                                      decoration: const BoxDecoration(
-                                        gradient: LinearGradient(
-                                          colors: <Color>[
-                                            Color(0xFFB71C1C),
-                                            Color(0xFFEF5350),
-                                            Color(0xFFFFCDD2),
-                                          ],
+                                  Center(
+                                    child: Row(
+                                      // mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+
+                                      children: [
+                                        Text(
+                                          'Got any questions?',
+                                          textAlign: TextAlign.start,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w200,
+                                            fontSize: 30,
+                                          ),
                                         ),
-                                      ),
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: const Text('Contact Us',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 20)),
+                                        RaisedButton(
+                                          onPressed: () {
+                                            _onPressDialog();
+                                          },
+                                          textColor: Colors.white,
+                                          padding: const EdgeInsets.all(0.0),
+                                          child: Container(
+                                            width: 135,
+                                            decoration: const BoxDecoration(
+                                              gradient: LinearGradient(
+                                                colors: <Color>[
+                                                  Color(0xFFB71C1C),
+                                                  Color(0xFFEF5350),
+                                                  Color(0xFFFFCDD2),
+                                                ],
+                                              ),
+                                            ),
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: const Text('Contact Us',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(fontSize: 20)),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],
                               ),
                             ),
+                            CardHome(),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: ResponsiveWidget.isLargeScreen(context)
+                                      ? MediaQuery.of(context).size.height / 2
+                                      : MediaQuery.of(context).size.width * 1.6,
+                                  width: MediaQuery.of(context).size.width,
+                                  color: Colors.blue[900],
+                                  child: CourseSection(),
+                                ),
+                              ],
+                            ),
+                            Container(
+                              height: ResponsiveWidget.isLargeScreen(context)
+                                  ? MediaQuery.of(context).size.height / 2.5
+                                  : MediaQuery.of(context).size.width * 1.4,
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.white,
+                              child: CoporateTraining(),
+                            ),
+                            Container(
+                              height: ResponsiveWidget.isLargeScreen(context)
+                                  ? MediaQuery.of(context).size.height / 2.7
+                                  : MediaQuery.of(context).size.width * 1.4,
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.blue[900],
+                              child: OnlineTraining(),
+                            ),
+                            Container(
+                              height: ResponsiveWidget.isLargeScreen(context)
+                                  ? MediaQuery.of(context).size.height / 2.5
+                                  : MediaQuery.of(context).size.height * 1.2,
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.white,
+                              child: BusinessSchool(),
+                            ),
+                            ParallaxPage(),
+                            
                           ],
                         ),
                       ),
-                      CardHome(),
-                      Container(
-                        height: ResponsiveWidget.isLargeScreen(context)
-                            ? MediaQuery.of(context).size.height / 2
-                            : MediaQuery.of(context).size.width * 1.6,
-                        width: MediaQuery.of(context).size.width,
-                        color: Colors.blue[900],
-                        child: CourseSection(),
-                      ),
-                      Container(
-                        height: ResponsiveWidget.isLargeScreen(context)
-                            ? MediaQuery.of(context).size.height / 2.5
-                            : MediaQuery.of(context).size.width * 1.4,
-                        width: MediaQuery.of(context).size.width,
-                        color: Colors.white,
-                        child: CoporateTraining(),
-                      ),
-                      Container(
-                        height: ResponsiveWidget.isLargeScreen(context)
-                            ? MediaQuery.of(context).size.height / 2.7
-                            : MediaQuery.of(context).size.width * 1.3,
-                        width: MediaQuery.of(context).size.width,
-                        color: Colors.blue[900],
-                        child: OnlineTraining(),
-                      ),
-                      Container(
-                        height: ResponsiveWidget.isLargeScreen(context)
-                            ? MediaQuery.of(context).size.height / 2.5
-                            : MediaQuery.of(context).size.height * 1.2,
-                        width: MediaQuery.of(context).size.width,
-                        color: Colors.white,
-                        child: BusinessSchool(),
-                      ),
-                      ParallaxPage(),
-                    ],
+                    ),
                   ),
-                ),
+               ResponsiveWidget.isLargeScreen(context)?   FlutterWebScroller(
+                    //Pass a reference to the ScrollCallBack function into the scrollbar
+                    scrollCallBack,
+
+                    //Add optional values
+                    scrollBarBackgroundColor: Colors.white,
+                    scrollBarWidth: 20.0,
+                    dragHandleColor: Colors.red,
+                    dragHandleBorderRadius: 2.0,
+                    dragHandleHeight: 40.0,
+                    dragHandleWidth: 15.0,
+                  ):Text(''),
+                ],
               )
+
             : PartnerPage(),
       ),
     );

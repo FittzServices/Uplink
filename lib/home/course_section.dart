@@ -23,6 +23,9 @@ class CourseSection extends StatelessWidget {
             : CrossAxisAlignment.center,
         // mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
+           SizedBox(
+            height: 10,
+          ),
           Text(
             'Individual Trainings',
             textAlign: TextAlign.start,
