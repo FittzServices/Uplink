@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
   void scrollCallBack(DragUpdateDetails dragUpdate) {
     setState(() {
       // Note: 3.5 represents the theoretical height of all my scrollable content. This number will vary for you.
-      _controller.position.moveTo(dragUpdate.globalPosition.dy * 3.5);
+      _controller.position.moveTo(dragUpdate.globalPosition.dy*4.5);
     });
   }
 
@@ -625,8 +625,9 @@ class _HomeState extends State<Home> {
                             scrollBarWidth: 20.0,
                             dragHandleColor: Colors.red,
                             dragHandleBorderRadius: 2.0,
-                            dragHandleHeight: 40.0,
+                            dragHandleHeight: MediaQuery.of(context).size.height/4,
                             dragHandleWidth: 15.0,
+                          
                           ),
                         )
                       : Text(''),
