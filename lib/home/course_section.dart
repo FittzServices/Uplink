@@ -125,8 +125,8 @@ class CourseSection extends StatelessWidget {
 
 class CoporateTraining extends StatelessWidget {
   imageUsed(context) => Container(
-        height: 220,
-        width: 220,
+        height: 300,
+        width: 300,
         decoration: BoxDecoration(
           color: const Color(0xff7c94b6),
           image: DecorationImage(

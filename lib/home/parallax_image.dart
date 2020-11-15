@@ -38,7 +38,7 @@ class _ParallaxImageState extends State<ParallaxImage> {
     Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left:50.0, right: 50),
+          padding: const EdgeInsets.only(left:55.0, right: 55),
           child: Text(
             'I think the experience and the exposure to different teaching styles has given me a different perspective about life and what I really want to do.',
             textAlign: TextAlign.center,
@@ -78,7 +78,7 @@ class _ParallaxImageState extends State<ParallaxImage> {
     Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left:50.0, right: 50),
+          padding: const EdgeInsets.only(left:55.0, right: 55),
           child: Text(
             'Classes in my curriculum were always available, this made scheduling around my full-time job easy. The courses offered were directly related to my career and helped me advance my position in the IT world.',
             textAlign: TextAlign.center,
@@ -116,7 +116,7 @@ class _ParallaxImageState extends State<ParallaxImage> {
       ],
     ),
     Padding(
-      padding: const EdgeInsets.only(left:20.0, right: 22),
+      padding: const EdgeInsets.only(left:30.0, right: 30),
       child: Column(
         children: [
           Text(
@@ -158,7 +158,7 @@ class _ParallaxImageState extends State<ParallaxImage> {
     Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left:20.0, right: 20),
+          padding: const EdgeInsets.only(left:30.0, right: 30),
           child: Text(
             'Due to my previous experiences at other school, I was reluctant, but friendly and service-oriented representative convinced me that I am doing the right thing. I chose the web development program, and this institutehas met my expectations, with an excellent tutor and academic environment',
             textAlign: TextAlign.center,
@@ -216,7 +216,7 @@ class _ParallaxImageState extends State<ParallaxImage> {
               child: Padding(
                 padding: ResponsiveWidget.isLargeScreen(context)
                     ? const EdgeInsets.only(right: 150.0)
-                    : const EdgeInsets.only(right: 5.0),
+                    : const EdgeInsets.only(left:5,right: 5.0),
                 child: Align(
                   alignment: Alignment.topRight,
                   child: Column(
@@ -224,10 +224,10 @@ class _ParallaxImageState extends State<ParallaxImage> {
 
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height / 1.8,
+                        height: ResponsiveWidget.isLargeScreen(context)?330:MediaQuery.of(context).size.height/2.5,
                         width: ResponsiveWidget.isLargeScreen(context)
-                            ? MediaQuery.of(context).size.height / 1.5
-                            : MediaQuery.of(context).size.height / 1.7,
+                            ? 500
+                            :MediaQuery.of(context).size.width-30,
                         decoration: BoxDecoration(
                           shape: BoxShape.rectangle,
                           color: Colors.red.withOpacity(0.8),
@@ -240,8 +240,8 @@ class _ParallaxImageState extends State<ParallaxImage> {
                             children: [
                               Padding(
                                 padding: ResponsiveWidget.isLargeScreen(context)
-                                    ? const EdgeInsets.only(top: 100.0)
-                                    : const EdgeInsets.only(top: 30.0),
+                                    ? const EdgeInsets.only(top: 30.0)
+                                    : const EdgeInsets.only(top: 5.0),
                                 child: CarouselSlider(
                                   items: testimony,
                                   options: CarouselOptions(

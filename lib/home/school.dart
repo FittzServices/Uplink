@@ -144,7 +144,7 @@ class BusinessSchool extends StatelessWidget {
         children: <Widget>[
           Text(
             'School Business Services',
-            textAlign: TextAlign.start,
+            textAlign: ResponsiveWidget.isLargeScreen(context)?TextAlign.start:TextAlign.center,
             style: TextStyle(
               color: Colors.black38,
               fontSize: 25,

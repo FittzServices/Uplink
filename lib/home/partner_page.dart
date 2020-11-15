@@ -1,4 +1,4 @@
-import 'dart:html';
+
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +48,10 @@ class _PartnerPageState extends State<PartnerPage>
         : Theme.of(context).textTheme.headline6;
     return Listener(
       onPointerSignal: (PointerSignalEvent event){
-        if(event is PointerSignalEvent){
+        if(event is PointerScrollEvent){
+          setState(() {
+            _offset =event.position.dy;
+          });
           print('this is pointer scrooll $event');
         }
       },
@@ -944,45 +947,7 @@ class _PartnerPageState extends State<PartnerPage>
                     ),
                     ResponsiveWidget.isLargeScreen(context)
                         ? 
-                        // Container(
-                        //     alignment: Alignment.centerRight,
-                        //     height: MediaQuery.of(context).size.height,
-                        //     width: 20.0,
-                        //     margin: EdgeInsets.only(
-                        //         left: MediaQuery.of(context).size.width - 20.0),
-                        //     decoration: BoxDecoration(color:Colors.black12.withOpacity(0.5)),
-                        //     child: Container(
-                        //       alignment: Alignment.topCenter,
-                        //       child: GestureDetector(
-                        //         child: Container(
-                        //           height: MediaQuery.of(context).size.height/3,
-                        //           width: 15.0,
-                        //           margin: EdgeInsets.only(
-                        //               left: 5.0, right: 5.0, top: _offset),
-                        //           decoration: BoxDecoration(
-                        //             color: Colors.red,
-                        //             borderRadius: BorderRadius.all(
-                        //               Radius.circular(3.0),
-                        //             ),
-                        //           ),
-                        //         ),
-                        //         onVerticalDragUpdate: (dragUpdate) {
-                        //           _controller.position
-                        //               .moveTo(dragUpdate.globalPosition.dy * 3.5);
-
-                        //           setState(() {
-                        //             if (dragUpdate.globalPosition.dy >= 0) {
-                        //               _offset = dragUpdate.globalPosition.dy;
-                        //               double maxHeight = MediaQuery.of(context).size.height-MediaQuery.of(context).size.height/3;
-                        //               _offset =(_offset>maxHeight) ? maxHeight :_offset;
-                        //             }
-                        //             print(
-                        //                 "View offset ${_controller.offset} scroll-bar offset $_offset");
-                        //           });
-                        //         },
-                        //       ),
-                        //     ),
-                        //   )
+                        
                          FlutterWebScroller(
                               //Pass a reference to the ScrollCallBack function into the scrollbar
                               scrollCallBack,
