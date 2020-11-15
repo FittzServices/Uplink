@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:uplink_tech_hub/home/blur_section.dart';
 import 'package:uplink_tech_hub/home/parallax_image.dart';
 import 'package:uplink_tech_hub/home/responsive_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ParallaxPage extends StatefulWidget {
   @override
@@ -70,7 +71,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                           ),
                           new Container(
                             height: 70,
-                            width: 200,
+                            width: 180,
                             padding: new EdgeInsets.only(left: 5),
                             child: new Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,7 +111,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                           ),
                           new Container(
                             height: 70,
-                            width: 200,
+                            width: 180,
                             padding: new EdgeInsets.only(left: 5),
                             child: new Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,59 +144,58 @@ class _ParallaxPageState extends State<ParallaxPage> {
               : Align(
                   alignment: Alignment.center,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 165),
+                    padding: const EdgeInsets.all(8),
                     child: Column(
                       // crossAxisAlignment: CrossAxisAlignment.center,
-                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      // mainAxisSize:MainAxisSize.min,
                       children: [
-                        Center(
-                          child: new Container(
-                            child: new Row(
-                              children: <Widget>[
-                                Container(
-                                  child: Icon(
-                                    Icons.person,
-                                    size: 50,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                new Container(
-                                  height: 70,
-                                  width: 200,
-                                  padding: new EdgeInsets.only(left: 5),
-                                  child: new Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: <Widget>[
-                                      new Text(
-                                        "20",
-                                        style: new TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 30.0,
-                                        ),
-                                      ),
-                                      new Text(
-                                        "Teachers",
-                                        style: new TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12.0,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                        new Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              child: Icon(
+                                Icons.person,
+                                size: 50,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
+                            new Container(
+                              height: 90,
+                              width: 180,
+                              padding: new EdgeInsets.only(left: 5),
+                              child: new Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                  new Text(
+                                    "20",
+                                    style: new TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30.0,
+                                    ),
+                                  ),
+                                  new Text(
+                                    "Teachers",
+                                    style: new TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                         new Container(
                           child: new Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Container(
+                             new  Container(
                                 child: Icon(
                                   Icons.book,
                                   size: 50,
@@ -204,12 +204,12 @@ class _ParallaxPageState extends State<ParallaxPage> {
                               ),
                               new Container(
                                 height: 70,
-                                width: 200,
+                                width: 180,
                                 padding: new EdgeInsets.only(left: 5),
                                 child: new Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                      MainAxisAlignment.center,
                                   children: <Widget>[
                                     new Text(
                                       "45",
@@ -235,6 +235,8 @@ class _ParallaxPageState extends State<ParallaxPage> {
                         ),
                         new Container(
                           child: new Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Container(
                                 child: Icon(
@@ -245,7 +247,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                               ),
                               new Container(
                                 height: 70,
-                                width: 200,
+                                width: 180,
                                 padding: new EdgeInsets.only(left: 5),
                                 child: new Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -596,16 +598,12 @@ class _ParallaxPageState extends State<ParallaxPage> {
                               )
                             : Padding(
                                 padding: const EdgeInsets.only(
-                                    top: 20, left: 8.0, right: 8, bottom: 8),
+                                    top: 20, left: 50.0, right: 50, bottom: 10),
                                 child: Column(
                                   children: [
                                     Container(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              3.5,
-                                      width:
-                                          MediaQuery.of(context).size.height /
-                                              2,
+                                      height:200,
+                                          
                                       child: Column(
                                         children: [
                                           Text(
@@ -620,7 +618,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                           SizedBox(height: 5),
                                           Text(
                                             'Uplinx Digital Institute – We are a fast-growing capacity development organization in Nigeria. We develop capacity in the area of Information Technology, Solar Power System, Personal Development and Leadership. We work with organizations and individual to achieving lofty goals of their dream. We are a growth partner to our highly esteemed clients. Any deal with us is a promise of satisfaction.',
-                                            textAlign: TextAlign.start,
+                                            textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: Colors.white70,
                                               letterSpacing: 1.2,
@@ -632,12 +630,9 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                     ),
                                     SizedBox(height: 20),
                                     Container(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              4.5,
-                                      width:
-                                          MediaQuery.of(context).size.height /
-                                              2,
+                                      height:200,
+                                    
+                                          
                                       child: Column(
                                         children: [
                                           Text(
@@ -652,7 +647,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                             'Individual Training',
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
-                                              fontSize: 12,
+                                                fontSize: 12,
                                                 color: Colors.white70),
                                           ),
                                           SizedBox(height: 5),
@@ -660,7 +655,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                             'Corporate Training',
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
-                                              fontSize: 12,
+                                                fontSize: 12,
                                                 color: Colors.white70),
                                           ),
                                           SizedBox(height: 5),
@@ -668,7 +663,7 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                             'Online Training',
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
-                                              fontSize: 12,
+                                                fontSize: 12,
                                                 color: Colors.white70),
                                           ),
                                           SizedBox(height: 5),
@@ -676,19 +671,15 @@ class _ParallaxPageState extends State<ParallaxPage> {
                                             'Exams',
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
-                                              fontSize: 12,
+                                                fontSize: 12,
                                                 color: Colors.white70),
                                           ),
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              3,
-                                      width:
-                                          MediaQuery.of(context).size.height /
-                                              2,
+                                      height:200,
+                                         
                                       child: Padding(
                                         padding: const EdgeInsets.only(
                                             left: 30, right: 30),
@@ -830,9 +821,17 @@ class _ParallaxPageState extends State<ParallaxPage> {
                         color: Colors.black,
                         width: MediaQuery.of(context).size.width,
                         child: Center(
-                          child: Text(
-                            '@COPYRIGHT 2020 UPLINK DIGITAL INSTITUTE',
-                            style: TextStyle(color: Colors.white60),
+                          child: new InkWell(
+                            child: Text(
+                              'DESIGNED BY : M.A ADEGBOYE',
+                              style: TextStyle(
+                                  color: Colors.white60,
+                                  fontStyle: FontStyle.italic),
+                            ),
+                            onTap: () {
+                              launch(
+                                  "https://www.linkedin.com/in/majeed-adegboye-47189142/");
+                            },
                           ),
                         ),
                       )

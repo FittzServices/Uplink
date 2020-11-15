@@ -217,8 +217,8 @@ class _BlurImageState extends State<BlurImage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
-                   height: MediaQuery.of(context).size.height/3,
-              width: MediaQuery.of(context).size.height/2.5,
+                   height: 265,
+              width: 265,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 2.0),
                     color: Colors.white,
@@ -275,8 +275,8 @@ class _BlurImageState extends State<BlurImage> {
                   ),
                 ),
                 Container(
-                   height: MediaQuery.of(context).size.height/3,
-              width: MediaQuery.of(context).size.height/2.5,
+                   height: 265,
+              width: 265,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 2.0),
                     color: Colors.white,
@@ -333,8 +333,8 @@ class _BlurImageState extends State<BlurImage> {
                   ),
                 ),
                 Container(
-                   height: MediaQuery.of(context).size.height/3,
-              width: MediaQuery.of(context).size.height/2.5,
+                   height: 265,
+              width: 265,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 2.0),
                     color: Colors.white,
