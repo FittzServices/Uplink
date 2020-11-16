@@ -13,7 +13,7 @@ class CoursesOffered extends StatelessWidget {
       builder: (context, sizingInformation) => Container(
         margin: sizingInformation.deviceScreenType != DeviceScreenType.mobile
             ? EdgeInsets.symmetric(vertical: kDefaultPadding)
-            : EdgeInsets.symmetric(horizontal: 50.0),
+            : EdgeInsets.symmetric(horizontal: 10.0),
         constraints: BoxConstraints(maxWidth: 1110),
         child: Stack(
           children: [

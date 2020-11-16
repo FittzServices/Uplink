@@ -48,7 +48,7 @@ class ContactBox extends StatelessWidget {
     return Container(
       constraints: BoxConstraints(maxWidth: 1110),
       margin: EdgeInsets.only(top: kDefaultPadding),
-      padding: EdgeInsets.all(kDefaultPadding * 3),
+      padding: EdgeInsets.all(kDefaultPadding),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
