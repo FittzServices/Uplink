@@ -30,7 +30,7 @@ List<Course> courses = [
   ),
   Course(
     id: 4,
-    title: "Python Programming",
+    title: "Python",
     image: "assets/images/python.png",
     color: Color(0xFFFFE0E0),
   ),

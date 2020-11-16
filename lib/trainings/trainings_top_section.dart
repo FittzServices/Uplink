@@ -7,19 +7,18 @@ import 'package:uplink_tech_hub/trainings/menu.dart';
 class TopSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+   
     return Container(
       padding: const EdgeInsets.only(top: 90),
       constraints: BoxConstraints(maxHeight: 400, minHeight: 200),
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        image: new DecorationImage(
-          image: new AssetImage(
-            'images/bacground.jpeg',
-          ),
-          fit: BoxFit.fitWidth,
-        ),
-      ),
+          color: const Color(0xff7c94b6),
+          image: DecorationImage(
+            image: ExactAssetImage('assets/images/bacground.jpeg'),
+            fit: BoxFit.fitWidth,
+          ),),
+     
       child: Container(
         margin: EdgeInsets.only(top: kDefaultPadding),
         width: 700,

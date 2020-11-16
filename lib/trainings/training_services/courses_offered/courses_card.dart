@@ -31,14 +31,14 @@ class _CourseCardState extends State<CourseCard> {
         hoverColor: Colors.transparent,
         child: AnimatedContainer(
           duration: duration,
-          margin: sizingInformation.deviceScreenType == DeviceScreenType.tablet
-              ? EdgeInsets.symmetric(vertical: kDefaultPadding * 2)
+          margin: sizingInformation.deviceScreenType != DeviceScreenType.mobile
+              ? EdgeInsets.symmetric(vertical: kDefaultPadding /1.5)
               : EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
-          height: sizingInformation.deviceScreenType == DeviceScreenType.tablet
-              ? 256
+          height: sizingInformation.deviceScreenType != DeviceScreenType.mobile
+              ? 220
               : 170,
-          width: sizingInformation.deviceScreenType == DeviceScreenType.tablet
-              ? 256
+          width: sizingInformation.deviceScreenType != DeviceScreenType.mobile
+              ? 220
               : 300,
           decoration: BoxDecoration(
             color: courses[widget.index].color,
@@ -50,12 +50,10 @@ class _CourseCardState extends State<CourseCard> {
             children: [
               AnimatedContainer(
                 duration: duration,
-                height: sizingInformation.deviceScreenType ==
-                        DeviceScreenType.tablet
+                height: sizingInformation.deviceScreenType != DeviceScreenType.mobile
                     ? 150
                     : 120,
-                width: sizingInformation.deviceScreenType ==
-                        DeviceScreenType.tablet
+                width: sizingInformation.deviceScreenType != DeviceScreenType.mobile
                     ? 150
                     : 120,
                 decoration: BoxDecoration(
@@ -120,14 +118,14 @@ class _CourseCard2State extends State<CourseCard2> {
         hoverColor: Colors.transparent,
         child: AnimatedContainer(
           duration: duration,
-          margin: sizingInformation.deviceScreenType == DeviceScreenType.tablet
-              ? EdgeInsets.symmetric(vertical: kDefaultPadding * 2)
+          margin: sizingInformation.deviceScreenType != DeviceScreenType.mobile
+              ? EdgeInsets.symmetric(vertical: kDefaultPadding)
               : EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
-          height: sizingInformation.deviceScreenType == DeviceScreenType.tablet
-              ? 256
+          height: sizingInformation.deviceScreenType != DeviceScreenType.mobile
+              ? 220
               : 170,
-          width: sizingInformation.deviceScreenType == DeviceScreenType.tablet
-              ? 256
+          width: sizingInformation.deviceScreenType != DeviceScreenType.mobile
+              ? 220
               : 300,
           decoration: BoxDecoration(
             color: courses2[widget.index].color,
@@ -140,12 +138,10 @@ class _CourseCard2State extends State<CourseCard2> {
               AnimatedContainer(
                 duration: duration,
                 padding: EdgeInsets.all(kDefaultPadding * 1.5),
-                height: sizingInformation.deviceScreenType ==
-                        DeviceScreenType.tablet
+                height: sizingInformation.deviceScreenType != DeviceScreenType.mobile
                     ? 150
                     : 120,
-                width: sizingInformation.deviceScreenType ==
-                        DeviceScreenType.tablet
+                width: sizingInformation.deviceScreenType != DeviceScreenType.mobile
                     ? 150
                     : 120,
                 decoration: BoxDecoration(
