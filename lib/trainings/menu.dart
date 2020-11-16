@@ -21,7 +21,7 @@ class _MenuState extends State<Menu> {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) => Container(
-        padding: sizingInformation.deviceScreenType == DeviceScreenType.tablet
+        padding: sizingInformation.deviceScreenType != DeviceScreenType.mobile
             ? EdgeInsets.symmetric(horizontal: kDefaultPadding * 2.5)
             : EdgeInsets.symmetric(horizontal: kDefaultPadding),
         constraints: BoxConstraints(maxWidth: 1110),
@@ -34,12 +34,18 @@ class _MenuState extends State<Menu> {
           ),
           boxShadow: [kDefaultShadow],
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(
-            menuItems.length,
-            (index) => buildMenuItem(index),
-          ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(
+                menuItems.length,
+                (index) => buildMenuItem(index),
+              ),
+            
+            ),
+           
+          ],
         ),
       ),
     );
@@ -59,7 +65,7 @@ class _MenuState extends State<Menu> {
           },
           child: Container(
             constraints:
-                sizingInformation.deviceScreenType == DeviceScreenType.tablet
+                sizingInformation.deviceScreenType != DeviceScreenType.mobile
                     ? BoxConstraints(minWidth: 122)
                     : BoxConstraints(minWidth: 60),
             height: 100,
@@ -69,8 +75,7 @@ class _MenuState extends State<Menu> {
                 Text(
                   menuItems[index],
                   style: TextStyle(
-                      fontSize: sizingInformation.deviceScreenType ==
-                              DeviceScreenType.tablet
+                      fontSize: sizingInformation.deviceScreenType != DeviceScreenType.mobile
                           ? 20
                           : 15,
                       color: kTextColor),

@@ -10,9 +10,10 @@ import 'package:uplink_tech_hub/main_folder/navigation_bar/navigationb_bar_deskt
 class NavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout(
-      mobile: NavigationBarMobile(),
-      tablet: NavigationBarTabletDesktop(),
-    );
+    return NavigationBarTabletDesktop();
+    // ScreenTypeLayout(
+    //   // mobile: NavigationBarMobile(),
+    //   NavigationBarTabletDesktop(),
+    // );
   }
 }

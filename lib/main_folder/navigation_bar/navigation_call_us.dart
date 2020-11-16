@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:uplink_tech_hub/main_folder/centered_view/centered_view.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NavBarCallUs extends StatelessWidget {
   const NavBarCallUs({Key key}) : super(key: key);
@@ -29,7 +30,9 @@ class NavBarCallUs extends StatelessWidget {
                 FontAwesomeIcons.facebook,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                launch("https://www.facebook.com/timsolu");
+              },
               iconSize: 15,
             ),
             SizedBox(
@@ -40,7 +43,9 @@ class NavBarCallUs extends StatelessWidget {
                 FontAwesomeIcons.linkedinIn,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                 launch("https://www.linkedin.com/in/timsolu/");
+              },
               iconSize: 15,
             ),
             SizedBox(

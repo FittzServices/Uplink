@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:uplink_tech_hub/main_folder/shared/loading.dart';
 import 'package:uplink_tech_hub/shared/constant.dart';
 import 'package:uplink_tech_hub/trainings/section_title.dart';
 import 'package:uplink_tech_hub/trainings/training_services/contact_us/social_card.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactSection extends StatelessWidget {
   @override
@@ -10,6 +11,7 @@ class ContactSection extends StatelessWidget {
     return Container(
       // this height only for demo
       // height: 500,
+
       width: double.infinity,
       decoration: BoxDecoration(
         color: Color(0xFFE8F0F9),
@@ -20,13 +22,16 @@ class ContactSection extends StatelessWidget {
       ),
       child: Column(
         children: [
-          SizedBox(height: kDefaultPadding * 2.5),
-          SectionTitle(
-            title: "Contact Us",
-            subTitle: "For Project inquiry and information",
-            color: Color(0xFF07E24A),
+          SizedBox(height: 5),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 50.0),
+            child: SectionTitle(
+              title: "Contact Us",
+              subTitle: "For Project inquiry and information",
+              color: Color(0xFF07E24A),
+            ),
           ),
-          ContactBox()
+          ContactBox(),
         ],
       ),
     );
@@ -42,7 +47,7 @@ class ContactBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(maxWidth: 1110),
-      margin: EdgeInsets.only(top: kDefaultPadding * 2),
+      margin: EdgeInsets.only(top: kDefaultPadding),
       padding: EdgeInsets.all(kDefaultPadding * 3),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -66,17 +71,27 @@ class ContactBox extends StatelessWidget {
                 color: Color(0xFFE4FFC7),
                 iconSrc: "assets/images/whatsapp.png",
                 name: 'Whatsapp',
-                press: () {},
+                press: () async {
+                  var phone = "+23408097352014";
+                  var whatsappUrl = "whatsapp://send?phone=$phone";
+                  await canLaunch(whatsappUrl)
+                      ? launch(whatsappUrl)
+                      : print(
+                          "open whatsapp app link or do a snackbar with notification that there is no whatsapp installed");
+                },
               ),
               SocalCard(
                 color: Color(0xFFE8F0F9),
                 iconSrc: "assets/images/messanger.png",
                 name: 'Facebook',
-                press: () {},
+                press: () {
+                  var messengerUrl='m.me/timsolu';
+                  launch("https://$messengerUrl");
+                },
               ),
             ],
           ),
-          SizedBox(height: kDefaultPadding * 2),
+          SizedBox(height: kDefaultPadding),
           ContactForm(),
         ],
       ),
@@ -84,82 +99,103 @@ class ContactBox extends StatelessWidget {
   }
 }
 
-class ContactForm extends StatelessWidget {
+class ContactForm extends StatefulWidget {
   const ContactForm({
     Key key,
   }) : super(key: key);
+  @override
+  _ContactFormState createState() => _ContactFormState();
+}
+
+class _ContactFormState extends State<ContactForm> {
+  String subject = '';
+  String request = '';
+  String error = '';
+  bool loading = false;
+  bool sentToEmial = false;
+
+  final _formkey = GlobalKey<FormState>();
+
+  _launchURL(String toMailId, String subject, String body) async {
+    var url = 'mailto:$toMailId?subject=$subject&body=$body';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      child: Wrap(
-        spacing: kDefaultPadding * 2.5,
-        runSpacing: kDefaultPadding * 1.5,
-        children: [
-          SizedBox(
-            width: 470,
-            child: TextFormField(
-              onChanged: (value) {},
-              decoration: InputDecoration(
-                labelText: "Your Name",
-                hintText: "Enter Your Name",
-              ),
+    return loading
+        ? ResultMessage()
+        : new Form(
+            key: _formkey,
+            child: Wrap(
+              spacing: kDefaultPadding,
+              runSpacing: kDefaultPadding,
+              children: [
+                SizedBox(
+                  width: 470,
+                  child: TextFormField(
+                    validator: (val) =>
+                        val.isEmpty ? 'Subject cannot be empty' : null,
+                    onChanged: (val) {
+                      setState(() => subject = val);
+                    },
+                    decoration: InputDecoration(
+                      labelText: "Subject",
+                      hintText: "Write the subject of your request",
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  // height: 300,
+                  // TextField by default cover the height, i tryed to fix this problem but i cant
+                  child: TextFormField(
+                    // minLines: 5,
+                    // maxLines: 7,
+                    validator: (val) =>
+                        val.isEmpty ? 'Request cannot be empty' : null,
+                    onChanged: (val) {
+                      setState(() => request = val);
+                    },
+                    decoration: InputDecoration(
+                      labelText: "Request",
+                      hintText: "Write some request",
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Center(
+                  child: FittedBox(
+                    child: DefaultButton(
+                      imageSrc: "assets/images/contact_icon.png",
+                      text: "Contact Me!",
+                      press: () async {
+                        // setState(() {
+                        //   loading=true;
+                        // });
+                        if (_formkey.currentState.validate()) {
+                          // Navigator.pop(context);
+                          _launchURL('info@uplinx.com.ng', subject, request);
+                          setState(() => {
+                                loading = true,
+                                request = '',
+                                subject = '',
+                              });
+                        } else {
+                          setState(() {
+                            loading = false;
+                          });
+                        }
+                      },
+                    ),
+                  ),
+                )
+              ],
             ),
-          ),
-          SizedBox(
-            width: 470,
-            child: TextFormField(
-              onChanged: (value) {},
-              decoration: InputDecoration(
-                labelText: "Email Address",
-                hintText: "Enter your email address",
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 470,
-            child: TextFormField(
-              onChanged: (value) {},
-              decoration: InputDecoration(
-                labelText: "Project Type",
-                hintText: "Select Project Type",
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 470,
-            child: TextFormField(
-              onChanged: (value) {},
-              decoration: InputDecoration(
-                labelText: "Project Budget",
-                hintText: "Select Project Budget",
-              ),
-            ),
-          ),
-          SizedBox(
-            // height: 300,
-            // TextField by default cover the height, i tryed to fix this problem but i cant
-            child: TextFormField(
-              onChanged: (value) {},
-              decoration: InputDecoration(
-                labelText: "Description",
-                hintText: "Write some description",
-              ),
-            ),
-          ),
-          SizedBox(height: kDefaultPadding * 2),
-          Center(
-            child: FittedBox(
-              child: DefaultButton(
-                imageSrc: "assets/images/contact_icon.png",
-                text: "Contact Me!",
-                press: () {},
-              ),
-            ),
-          )
-        ],
-      ),
-    );
+          );
   }
 }
 
@@ -189,6 +225,29 @@ class DefaultButton extends StatelessWidget {
           Image.asset(imageSrc, height: 40),
           SizedBox(width: kDefaultPadding),
           Text(text),
+        ],
+      ),
+    );
+  }
+}
+
+class ResultMessage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Wrap(
+        spacing: kDefaultPadding,
+        runSpacing: kDefaultPadding,
+        children: [
+          Center(
+            child: FittedBox(
+              child: Container(
+                height: 200,
+                child: Text(
+                    " Message request has been redirected to your email, \nplease veify and send"),
+              ),
+            ),
+          ),
         ],
       ),
     );
