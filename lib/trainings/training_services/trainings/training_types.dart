@@ -13,7 +13,7 @@ class RecentWorkSection extends StatelessWidget {
             child: Container(
               margin: sizingInformation.deviceScreenType != DeviceScreenType.mobile
               ? EdgeInsets.symmetric(vertical: kDefaultPadding)
-              : EdgeInsets.symmetric(horizontal: 50.0),
+              : EdgeInsets.symmetric(horizontal: 10.0),
           // margin: EdgeInsets.only(top: kDefaultPadding * 6),
           // width: double.infinity,
           // just for demo

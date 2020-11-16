@@ -20,7 +20,7 @@ class NavigationBarTabletDesktop extends StatefulWidget {
 
 class _NavigationBarTabletDesktopState
     extends State<NavigationBarTabletDesktop> {
-  List _isHovering = [false, false, false];
+  // List _isHovering = [false, false, false];
   String category1 = 'category 1';
   String category2 = 'category 2';
   String category3 = 'category 3';
