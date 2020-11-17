@@ -72,7 +72,7 @@ class ContactBox extends StatelessWidget {
                 iconSrc: "assets/images/whatsapp.png",
                 name: 'Whatsapp',
                 press: () async {
-                  var phone = "+23408097352014";
+                  var phone = "+2348097352014";
                   var whatsappUrl = "whatsapp://send?phone=$phone";
                   await canLaunch(whatsappUrl)
                       ? launch(whatsappUrl)
