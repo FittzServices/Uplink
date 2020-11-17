@@ -9,7 +9,7 @@ class SectionViewMobile extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       color: Colors.blue[900],
       child: Padding(
-        padding: const EdgeInsets.only(left:35),
+        padding: const EdgeInsets.only(left:18),
         child: Row(
           children: [
             new Container(

@@ -31,12 +31,15 @@ class FooterSectionMobile extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 20),
-                        Text(
-                          'Uplinx Digital Institute – We are a fast-growing capacity development organization in Nigeria. We develop capacity in the area of Information Technology, Solar Power System, Personal Development and Leadership. We work with organizations and individual to achieving lofty goals of their dream. We are a growth partner to our highly esteemed clients. Any deal with us is a promise of satisfaction.',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            color: Colors.white70,
-                            letterSpacing: 1.2,
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            'Uplinx Digital Institute – We are a fast-growing capacity development organization in Nigeria. We develop capacity in the area of Information Technology, Solar Power System, Personal Development and Leadership. We work with organizations and individual to achieving lofty goals of their dream. We are a growth partner to our highly esteemed clients. Any deal with us is a promise of satisfaction.',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              color: Colors.white70,
+                              letterSpacing: 1.2,
+                            ),
                           ),
                         ),
                       ],
