@@ -21,20 +21,7 @@ class NavigationBarTabletDesktop extends StatefulWidget {
 class _NavigationBarTabletDesktopState
     extends State<NavigationBarTabletDesktop> {
   // List _isHovering = [false, false, false];
-  String category1 = 'category 1';
-  String category2 = 'category 2';
-  String category3 = 'category 3';
-
-  List<String> selectedCategory = new List<String>();
-
-  @override
-  void initState() {
-    //Initialize the  scrollController
-    selectedCategory = new List<String>();
-    selectedCategory.add(category1);
-    super.initState();
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
@@ -48,122 +35,7 @@ class _NavigationBarTabletDesktopState
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   NavBarLogo(),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      InkWell(
-                        onTap: () {
-                          locator<NavigationService>().navigateTo(HomeRoute);
-                          selectedCategory = new List<String>();
-                          selectedCategory.add(category1);
-                          setState(() {});
-                        },
-                        child: Column(
-                          children: [
-                            Text(
-                              'Home',
-                              style: TextStyle(
-                                fontSize: sizingInformation.deviceScreenType !=
-                                      DeviceScreenType.mobile?18:14,
-                                // color:Colors.color
-                                color: selectedCategory.contains(category1)
-                                    ? Colors.deepOrange
-                                    : Colors.blue[900],
-                              ),
-                            ),
-                            SizedBox(height: 5),
-                            Visibility(
-                              maintainAnimation: true,
-                              maintainState: true,
-                              maintainSize: true,
-                              visible: selectedCategory.contains(category1),
-                              child: Container(
-                                height: 2,
-                                width: 20,
-                                color: selectedCategory.contains(category1)
-                                    ? Colors.deepOrange
-                                    : Colors.blue[900],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ).showCursorOnHover.moveUpOnHover,
-                      SizedBox(width: 25),
-                      InkWell(
-                        onTap: () {
-                          locator<NavigationService>().navigateTo(TrainingRoute);
-                          selectedCategory = new List<String>();
-                          selectedCategory.add(category2);
-                          setState(() {});
-                        },
-                        child: Column(
-                          children: [
-                            Text(
-                              'Services',
-                              style: TextStyle(
-                                fontSize: sizingInformation.deviceScreenType !=
-                                      DeviceScreenType.mobile?18:14,
-                                // color:Colors.color
-                                color: selectedCategory.contains(category2)
-                                    ? Colors.deepOrange
-                                    : Colors.blue[900],
-                              ),
-                            ),
-                            SizedBox(height: 5),
-                            Visibility(
-                              maintainAnimation: true,
-                              maintainState: true,
-                              maintainSize: true,
-                              visible: selectedCategory.contains(category2),
-                              child: Container(
-                                height: 2,
-                                width: 20,
-                                color: selectedCategory.contains(category2)
-                                    ? Colors.deepOrange
-                                    : Colors.blue[900],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ).showCursorOnHover.moveUpOnHover,
-                      SizedBox(width: 25),
-                      InkWell(
-                        onTap: () {
-                          locator<NavigationService>().navigateTo(PartnerRoute);
-                          selectedCategory = new List<String>();
-                          selectedCategory.add(category3);
-                          setState(() {});
-                        },
-                        child: Column(
-                          children: [
-                            Text(
-                              'Partners',
-                              style: TextStyle(
-                                 fontSize: sizingInformation.deviceScreenType !=
-                                      DeviceScreenType.mobile?18:14,
-                                // color:Colors.color
-                                color: selectedCategory.contains(category3)
-                                    ? Colors.deepOrange
-                                    : Colors.blue[900],
-                              ),
-                            ),
-                            SizedBox(height: 5),
-                            Visibility(
-                              maintainAnimation: true,
-                              maintainState: true,
-                              maintainSize: true,
-                              visible: selectedCategory.contains(category3),
-                              child: Container(
-                                height: 2,
-                                width: 20,
-                                color: selectedCategory.contains(category3)
-                                    ? Colors.deepOrange
-                                    : Colors.blue[900],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ).showCursorOnHover.moveUpOnHover,
+                  NavBarButtons(),
                       // NavBarItem(
                       //   // onHover: (value) {
                       //   //   setState(() {
@@ -213,15 +85,163 @@ class _NavigationBarTabletDesktopState
                       //   title: 'Partners',
                       //   visible: _isHovering[2],
                       //   onTap: PartnerRoute,
-                      // ),
-                    ],
-                  )
+                  
+          
                 ],
-              ),
+              )
             ),
           ],
         ),
       ),
     );
+  }
+}
+class NavBarButtons extends StatefulWidget {
+  @override
+  _NavBarButtonsState createState() => _NavBarButtonsState();
+}
+
+class _NavBarButtonsState extends State<NavBarButtons> {
+   String category1 = 'category 1';
+  String category2 = 'category 2';
+  String category3 = 'category 3';
+
+  List<String> selectedCategory = new List<String>();
+
+  @override
+  void initState() {
+    //Initialize the  scrollController
+    selectedCategory = new List<String>();
+    selectedCategory.add(category1);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) =>  Container(
+        child:Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        InkWell(
+                          onTap: () {
+                            locator<NavigationService>().navigateTo(HomeRoute);
+                            selectedCategory = new List<String>();
+                            selectedCategory.add(category1);
+                            setState(() {});
+                          },
+                          child: Column(
+                            children: [
+                              Text(
+                                'Home',
+                                style: TextStyle(
+                                  fontSize: sizingInformation.deviceScreenType !=
+                                        DeviceScreenType.mobile?18:14,
+                                  // color:Colors.color
+                                  color: selectedCategory.contains(category1)
+                                      ? Colors.deepOrange
+                                      : Colors.blue[900],
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Visibility(
+                                maintainAnimation: true,
+                                maintainState: true,
+                                maintainSize: true,
+                                visible: selectedCategory.contains(category1),
+                                child: Container(
+                                  height: 2,
+                                  width: 20,
+                                  color: selectedCategory.contains(category1)
+                                      ? Colors.deepOrange
+                                      : Colors.blue[900],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ).showCursorOnHover.moveUpOnHover,
+                        SizedBox(width: 25),
+                        InkWell(
+                          onTap: () {
+                            locator<NavigationService>().navigateTo(TrainingRoute);
+                            selectedCategory = new List<String>();
+                            selectedCategory.add(category2);
+                            setState(() {});
+                          },
+                          child: Column(
+                            children: [
+                              Text(
+                                'Services',
+                                style: TextStyle(
+                                  fontSize: sizingInformation.deviceScreenType !=
+                                        DeviceScreenType.mobile?18:14,
+                                  // color:Colors.color
+                                  color: selectedCategory.contains(category2)
+                                      ? Colors.deepOrange
+                                      : Colors.blue[900],
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Visibility(
+                                maintainAnimation: true,
+                                maintainState: true,
+                                maintainSize: true,
+                                visible: selectedCategory.contains(category2),
+                                child: Container(
+                                  height: 2,
+                                  width: 20,
+                                  color: selectedCategory.contains(category2)
+                                      ? Colors.deepOrange
+                                      : Colors.blue[900],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ).showCursorOnHover.moveUpOnHover,
+                        SizedBox(width: 25),
+                        InkWell(
+                          onTap: () {
+                            locator<NavigationService>().navigateTo(PartnerRoute);
+                            selectedCategory = new List<String>();
+                            selectedCategory.add(category3);
+                            setState(() {});
+                          },
+                          child: Column(
+                            children: [
+                              Text(
+                                'Partners',
+                                style: TextStyle(
+                                   fontSize: sizingInformation.deviceScreenType !=
+                                        DeviceScreenType.mobile?18:14,
+                                  // color:Colors.color
+                                  color: selectedCategory.contains(category3)
+                                      ? Colors.deepOrange
+                                      : Colors.blue[900],
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Visibility(
+                                maintainAnimation: true,
+                                maintainState: true,
+                                maintainSize: true,
+                                visible: selectedCategory.contains(category3),
+                                child: Container(
+                                  height: 2,
+                                  width: 20,
+                                  color: selectedCategory.contains(category3)
+                                      ? Colors.deepOrange
+                                      : Colors.blue[900],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ).showCursorOnHover.moveUpOnHover,
+                      ]
+                    ),
+      ),);
+          
+        
+    
+  
   }
 }

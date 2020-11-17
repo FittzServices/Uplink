@@ -44,7 +44,7 @@ class NavBarCallUs extends StatelessWidget {
                 color: Colors.white,
               ),
               onPressed: () {
-                 launch("https://www.linkedin.com/in/timsolu/");
+                 launch("https://www.linkedin.com/timsolu");
               },
               iconSize: 15,
             ),

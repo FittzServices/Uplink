@@ -29,7 +29,7 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
   void scrollCallBack(DragUpdateDetails dragUpdate) {
     setState(() {
       // Note: 3.5 represents the theoretical height of all my scrollable content. This number will vary for you.
-      _controller.position.moveTo(dragUpdate.globalPosition.dy);
+      _controller.position.moveTo(dragUpdate.globalPosition.dy*3.7);
     });
   }
 
@@ -38,6 +38,7 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
     return Stack(
       children: [
         SingleChildScrollView(
+          controller: _controller,
           child: Column(
             children: [
               CarouselImages(),
@@ -92,18 +93,18 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
             ],
           ),
         ),
-        // FlutterWebScroller(
-        //   //Pass a reference to the ScrollCallBack function into the scrollbar
-        //   scrollCallBack,
+        FlutterWebScroller(
+          //Pass a reference to the ScrollCallBack function into the scrollbar
+          scrollCallBack,
 
-        //   //Add optional values
-        //   scrollBarBackgroundColor: Colors.black12.withOpacity(0.5),
-        //   scrollBarWidth: 20.0,
-        //   dragHandleColor: Colors.red,
-        //   dragHandleBorderRadius: 2.0,
-        //   dragHandleHeight: MediaQuery.of(context).size.height / 3,
-        //   dragHandleWidth: 15.0,
-        // )
+          //Add optional values
+          scrollBarBackgroundColor: Colors.black12.withOpacity(0.5),
+          scrollBarWidth: 20.0,
+          dragHandleColor: Colors.red,
+          dragHandleBorderRadius: 2.0,
+          dragHandleHeight: MediaQuery.of(context).size.height / 3,
+          dragHandleWidth: 15.0,
+        )
       ],
     );
   }
